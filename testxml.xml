@@ -1,0 +1,35 @@
+<data>
+    <country name="Liechtenstein">
+        <rank updated="yes">2</rank>
+        <year>2008</year>
+        <gdppc>141100</gdppc>
+        <neighbor name="Austria" direction="E"/>
+        <neighbor name="Switzerland" direction="W"/>
+    </country>
+    <country name="Singapore">
+        <rank updated="yes">5</rank>
+        <year>2011</year>
+        <gdppc>59900</gdppc>
+        <neighbor name="Malaysia" direction="N"/>
+    </country>
+    <country name="Panama">
+        <rank updated="yes">69</rank>
+        <year>2011</year>
+        <gdppc>13600</gdppc>
+        <neighbor name="Costa Rica" direction="W"/>
+        <neighbor name="Colombia" direction="E"/>
+    </country>
+</data>
+
+
+for i in root.findall(".//sngdate"):
+    print (i)
+    print (i.find('caldate').text)
+    if (i.find('caldate').text) not in ("20211206, 20211207"):
+        print("die")
+        #print(root.findall(".///sngdate"/..[@caldate=i.find('caldate')]))
+        i.getparent().remove(n)
+
+        #root.remove(i.find('caldate'))
+    else:
+        print("good!")
