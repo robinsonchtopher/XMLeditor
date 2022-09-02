@@ -1,5 +1,68 @@
 import xml.etree.ElementTree as ET
 import lxml.etree as le
+from lxml import etree
+from copy import deepcopy
+
+### Working through https://lxml.de/tutorial.html to better grasp editing xml with python for updating scripting for metadata
+
+root = etree.Element("root")
+root.append(etree.Element("child1"))
+print(root.tag)
+child2=etree.SubElement(root, "child2")
+child3=etree.SubElement(root, "child3")
+print(etree.tostring(root, pretty_print=True))
+child=root[0]
+print(child.tag)
+root.index(root[1])
+children=list(root)
+print(children)
+for child in root:
+    print(child.tag)
+root.insert(0, etree.Element("child0"))
+start = root[:1]
+end = root[-1:]
+print(start[0].tag)
+print(end[0].tag)
+
+print(etree.iselement(root))#tests if it is some kind of Element
+
+if len(root):
+    print("The root element has children")
+print(root[0])  
+root[0]=root[-1]
+for child in root:
+    print(child.tag)
+root is root[0].getparent()
+
+element=etree.Element("neu")
+element.append(deepcopy(root[1]))
+print (element[0].tag)
+print([c.tag for c in root])
+
+root[0] is root[1].getprevious()
+root[1] is root[0].getnext()
+
+root=etree.Element("root", interesting="totally")#This section is interesting I want to see if I can use this then count the number of dates aka children for the mdattim element
+etree.tostring(root)
+print(root.get("interesting"))
+
+print(root.get("hello"))
+root.set("hello","huhu")
+print(root.get("hello"))
+
+etree.tostring(root)
+sorted(root.keys())
+for name, value in sorted(root.items()):
+    print('%s=%r'%(name, value))
+
+attributes = root.attrib
+print(attributes["interesting"])
+print(attributes.get("no-such-attribute"))
+attributes["hello"]= "gluten tag" # lol typo
+print(attributes["hello"])
+print(root.get("hello"))
+d=dict(root.attrib)
+print(sorted(d.items()))
 
 #The goal for this program is to search through a folder of XMLs
 #look at each XML and identify if it has the mdattim Element
@@ -19,13 +82,15 @@ import lxml.etree as le
 
 
 #sf = shapefile.Reader("shapefiles/blockgroups.shp")
-
+"""
 tree = ET.parse('time.xml')
 root = tree.getroot()
 print(root)
 
 rank=root.find('mdattim')
 print (rank)
+type(root.findall('mdattim'))
+print(root.findall('mdattim'))
 for date in root.findall('mdattim'):
     print("dkjalsdf;jkl;")
     if date == 1:
@@ -35,7 +100,7 @@ for date in root.findall('mdattim'):
 
 print("hello?")
 
-
+"""
 """
 print("hell")
 tree = ET.parse('time.xml')
@@ -77,3 +142,11 @@ root.findall(".//sngdate")
 
 tree.write('output.xml')
 """
+
+
+
+
+
+
+
+
