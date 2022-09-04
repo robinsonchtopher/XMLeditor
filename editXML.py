@@ -64,6 +64,26 @@ print(root.get("hello"))
 d=dict(root.attrib)
 print(sorted(d.items()))
 
+root = etree.Element("root")
+root.text="TEXT"
+print(root.text)
+print(etree.tostring(root))
+
+html=etree.Element("html")
+print(etree.tostring(html))
+body = etree.SubElement(html,"body")
+print(etree.tostring(html))
+body.text="TEXT"
+print(etree.tostring(html))
+br=etree.SubElement(body, "br")
+print(etree.tostring(html))
+br.tail="TAIL"
+print(etree.tostring(html))
+
+
+
+
+
 #The goal for this program is to search through a folder of XMLs
 #look at each XML and identify if it has the mdattim Element
 #If it does  check the number of sngdate elements
