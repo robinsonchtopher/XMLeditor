@@ -1,7 +1,7 @@
 import xml.etree.ElementTree as ET
 import lxml.etree as le
 from lxml import etree
-from copy import deepcopy
+
 
 ### Working through https://lxml.de/tutorial.html to better grasp editing xml with python for updating scripting for metadata
 
@@ -33,12 +33,12 @@ root[0]=root[-1]
 for child in root:
     print(child.tag)
 root is root[0].getparent()
-
+"""
 element=etree.Element("neu")
 element.append(deepcopy(root[1]))
 print (element[0].tag)
 print([c.tag for c in root])
-
+"""
 root[0] is root[1].getprevious()
 root[1] is root[0].getnext()
 
@@ -80,7 +80,32 @@ print(etree.tostring(html))
 br.tail="TAIL"
 print(etree.tostring(html))
 
+print(etree.tostring(br))
+print(etree.tostring(br, with_tail=False))
+print(etree.tostring(html, method="text"))
 
+#Using XPath to find text
+print(html.xpath("string()"))
+print(html.xpath("//text()"))
+build_text_list=etree.XPath("//text()")#put it into a function
+print(build_text_list(html))
+
+for i in range(1,100):
+    if i % 15 == 0:
+        print ("FizzBuzz")
+    elif i % 3 == 0:
+        print("Fizz")
+    elif i % 5 == 0:
+        print("Buzz")
+    else:
+        print(i)
+
+a=[0,0,0,0,1,1,1,1,2,2,2,3,3,3,4,4,4,5]
+for i in range(len(a)-1,0,-1):#start at length of A-1, stop at 0, move back 1 each time
+    if a[i] == a[i-1]:
+        del a[i]
+        print (a)
+print (a)
 
 
 
