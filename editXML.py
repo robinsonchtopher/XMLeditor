@@ -100,13 +100,20 @@ for i in range(1,100):
     else:
         print(i)
 
-a=[0,0,0,0,1,1,1,1,2,2,2,3,3,3,4,4,4,5]
+a=[0,0,0,0,1,1,1,1,2,2,2,3,3,3,4,4,4,5]#length -1 because we start by looking at second in list
 for i in range(len(a)-1,0,-1):#start at length of A-1, stop at 0, move back 1 each time
     if a[i] == a[i-1]:
         del a[i]
         print (a)
 print (a)
 
+n = 100
+fib=[0, 1]
+print(fib)
+for i in range(1,20):
+    sum=(fib[i-1]+fib[i])
+    fib.append(sum)
+print (fib)
 
 
 #The goal for this program is to search through a folder of XMLs
