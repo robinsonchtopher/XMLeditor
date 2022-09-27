@@ -90,6 +90,8 @@ print(html.xpath("//text()"))
 build_text_list=etree.XPath("//text()")#put it into a function
 print(build_text_list(html))
 
+
+
 for i in range(1,100):
     if i % 15 == 0:
         print ("FizzBuzz")
@@ -99,6 +101,8 @@ for i in range(1,100):
         print("Buzz")
     else:
         print(i)
+
+
 
 a=[0,0,0,0,1,1,1,1,2,2,2,3,3,3,4,4,4,5]#length -1 because we start by looking at second in list
 for i in range(len(a)-1,0,-1):#start at length of A-1, stop at 0, move back 1 each time
